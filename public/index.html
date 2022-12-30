@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Freshchat Bot - dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+      h1 {
+        font-family: Roboto;
+        font-weight: 400;
+      }
+    </style>
+          <script src="http://localhost:8082/index.js"></script>
+</head>
+  <body>
+    <h1>Freshchat local env</h1>
+    <script>
+    
+    const load = () => {
+        if (!WebChat) setTimeout(load, 100);
+        if (WebChat) WebChat.default({
+          customData: {
+            language:"en",
+          },
+          socketUrl:"http://localhost:8080/socket.io/socket.io.js",
+          withRules: true,
+        });
+      }
+      setTimeout(load, 200);
+      load();
+    </script>
+  </body>
+</html>
