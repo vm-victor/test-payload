@@ -62,12 +62,20 @@ io.on('connection', (socket) => {
 
             rl.on('line', function (cmd) {
 
+                if (cmd === 'send;') {
+                    rl.close();
+                } 
+
                 input.push(cmd);
             });
 
             rl.on('close', function (cmd) {
                 console.log("send reponse");
-                io.emit('bot_uttered', JSON.parse(input.join('')), socket.id);
+                try {
+                    io.emit('bot_uttered', JSON.parse(input.join('')), socket.id);
+                } catch (err) {
+                    console.error(err);
+                }
             });
         });
 
